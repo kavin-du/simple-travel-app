@@ -14,6 +14,7 @@ class Home extends StatefulWidget {
 }
 
 // ! change theme font
+// ! chande weather, distance, icons
 
 // https://www.planetware.com/world/top-places-to-visit-in-the-world-us-az-234.htm
 
