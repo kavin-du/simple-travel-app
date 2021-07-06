@@ -13,6 +13,8 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+// ! change theme font
+
 // https://www.planetware.com/world/top-places-to-visit-in-the-world-us-az-234.htm
 
 class _HomeState extends State<Home> {
@@ -30,11 +32,32 @@ class _HomeState extends State<Home> {
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Travel App'),
-        centerTitle: true,
+        titleSpacing: 25,
+        title: Text(
+          'Discover Places',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 27,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
+        toolbarHeight: 60,
+        actions: [
+          Icon(CupertinoIcons.camera_on_rectangle_fill, color: Colors.lightGreen),
+          SizedBox(width: 30),
+        ],
       ),
       body: SafeArea(
         child: Container(
+          // decoration: BoxDecoration(
+          //   image: DecorationImage(
+          //     image: AssetImage('images/background_home.jpg'),
+          //     fit: BoxFit.fill,
+          //   ),
+          // ),
           height: _height,
           child: ListView.builder(
             shrinkWrap: true,
@@ -44,10 +67,15 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.fromLTRB(15, 10, 15, 7.5),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => PlaceInfo(travelPlace: travelDataProvider.travelList[index])));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PlaceInfo(
+                                travelPlace:
+                                    travelDataProvider.travelList[index])));
                   },
-                  child: TravelTileWidget(travelPlace: travelDataProvider.travelList[index]),
+                  child: TravelTileWidget(
+                      travelPlace: travelDataProvider.travelList[index]),
                 ),
               );
             },
@@ -57,5 +85,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
