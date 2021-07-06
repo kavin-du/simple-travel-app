@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "623738677996",
+    "project_id": "madhack-workshop-2",
+    "storage_bucket": "madhack-workshop-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623738677996:android:6505f36c03a0000db413c9",
+        "android_client_info": {
+          "package_name": "com.example.madhack_workshop2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623738677996-ihi1lvhjkfb9ha2qa21jdl3o5311hhg3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNeDzMlpaN0Bcz6onCawXnJaAs5p8NBCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623738677996-ihi1lvhjkfb9ha2qa21jdl3o5311hhg3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
