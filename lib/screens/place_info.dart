@@ -29,11 +29,14 @@ class PlaceInfo extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          travelPlace.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
+                        Hero(
+                          tag: travelPlace.id+'title',
+                          child: Text(
+                            travelPlace.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                            ),
                           ),
                         ),
                         Icon(CupertinoIcons.heart_fill, color: Colors.pink),

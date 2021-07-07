@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:madhack_workshop2/models/travel_place.dart';
 import 'package:madhack_workshop2/providers/travel_data_provider.dart';
 import 'package:madhack_workshop2/screens/place_info.dart';
 import 'package:madhack_workshop2/widgets/travel_home_widget.dart';
@@ -30,8 +28,6 @@ class _HomeState extends State<Home> {
       isLoading = true;
     });
     await Provider.of<TravelDataProvider>(context, listen: false).loadPlaces();
-    // await Future.delayed(Duration(seconds: 5));
-
     setState(() {
       isLoading = false;
     });
@@ -50,12 +46,12 @@ class _HomeState extends State<Home> {
         title: Text(
           'Discover Places',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.green[200],
+        backgroundColor: Colors.blue,
         toolbarHeight: 60,
         actions: [
           CircleAvatar(
@@ -66,16 +62,13 @@ class _HomeState extends State<Home> {
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.green[100],
-          // color: Colors.purple[100],
-          // decoration: BoxDecoration(
-          //   image: DecorationImage(
-          //     image: AssetImage('images/background_home.jpg'),
-          //     fit: BoxFit.fill,
-          //   ),
-          // ),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/background_home.jpg'),
+              fit: BoxFit.fill,
+            ),
+          ),
           height: _height,
-          // child: Center(child: CupertinoActivityIndicator(radius: 13)),
           child: isLoading
               ? Center(child: CupertinoActivityIndicator(radius: 13))
               : ListView.builder(

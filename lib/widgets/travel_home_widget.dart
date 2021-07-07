@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:madhack_workshop2/models/travel_place.dart';
@@ -27,8 +26,9 @@ class TravelTileWidget extends StatelessWidget {
                 tag: travelPlace.id,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(18),
-                  child: Image.network(
+                  child: Image.network(                    
                     travelPlace.image,
+                    height: 220,
                     fit: BoxFit.fill,
                     loadingBuilder: (context, child, progress) {
                       return progress != null ? Container(
@@ -61,11 +61,14 @@ class TravelTileWidget extends StatelessWidget {
               CupertinoIcons.placemark_fill,
               color: Colors.red,
             ),
-            title: Text(
-              travelPlace.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+            title: Hero(
+              tag: travelPlace.id+'title',
+              child: Text(
+                travelPlace.title,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
             ),
             subtitle: Text(

@@ -19,9 +19,4 @@ class TravelDataProvider with ChangeNotifier {
       });
     });
   }
-
-  // void addItem(TravelPlace travelPlace) {
-  //   travelList.add(travelPlace);
-  //   notifyListeners();
-  // }
 }
