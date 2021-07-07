@@ -1,6 +1,7 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:madhack_workshop2/models/travel_place.dart';
 import 'package:madhack_workshop2/providers/travel_data_provider.dart';
 import 'package:madhack_workshop2/screens/place_info.dart';
 import 'package:madhack_workshop2/widgets/travel_home_widget.dart';
@@ -13,16 +14,27 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-// ! change theme font
-// ! chande weather, distance, icons
-
 // https://www.planetware.com/world/top-places-to-visit-in-the-world-us-az-234.htm
 
 class _HomeState extends State<Home> {
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
-    Provider.of<TravelDataProvider>(context, listen: false).loadPlaces();
+    _loadItems();
+  }
+
+  Future _loadItems() async {
+    setState(() {
+      isLoading = true;
+    });
+    await Provider.of<TravelDataProvider>(context, listen: false).loadPlaces();
+    // await Future.delayed(Duration(seconds: 5));
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -55,6 +67,7 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Container(
           color: Colors.green[100],
+          // color: Colors.purple[100],
           // decoration: BoxDecoration(
           //   image: DecorationImage(
           //     image: AssetImage('images/background_home.jpg'),
@@ -62,27 +75,30 @@ class _HomeState extends State<Home> {
           //   ),
           // ),
           height: _height,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: travelDataProvider.travelList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 15, 7.5),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PlaceInfo(
-                                travelPlace: travelDataProvider
-                                    .travelList[index])));
+          // child: Center(child: CupertinoActivityIndicator(radius: 13)),
+          child: isLoading
+              ? Center(child: CupertinoActivityIndicator(radius: 13))
+              : ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: travelDataProvider.travelList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.fromLTRB(15, 10, 15, 7.5),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PlaceInfo(
+                                      travelPlace: travelDataProvider
+                                          .travelList[index])));
+                        },
+                        child: TravelTileWidget(
+                            travelPlace: travelDataProvider.travelList[index]),
+                      ),
+                    );
                   },
-                  child: TravelTileWidget(
-                      travelPlace: travelDataProvider.travelList[index]),
                 ),
-              );
-            },
-          ),
         ),
       ),
     );

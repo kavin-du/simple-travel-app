@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:madhack_workshop2/models/travel_place.dart';
@@ -13,6 +14,7 @@ class TravelTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.purple[50],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18),
       ),
@@ -25,7 +27,17 @@ class TravelTileWidget extends StatelessWidget {
                 tag: travelPlace.id,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(18),
-                  child: Image.network(travelPlace.image, fit: BoxFit.fill),
+                  child: Image.network(
+                    travelPlace.image,
+                    fit: BoxFit.fill,
+                    loadingBuilder: (context, child, progress) {
+                      return progress != null ? Container(
+                        child: CupertinoActivityIndicator(),
+                        height: 220,
+                        alignment: Alignment.center,
+                      ) : child;
+                    },
+                  ),
                 ),
               ),
               Padding(
@@ -53,7 +65,7 @@ class TravelTileWidget extends StatelessWidget {
               travelPlace.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 25,
+                fontSize: 20,
               ),
             ),
             subtitle: Text(
@@ -62,7 +74,8 @@ class TravelTileWidget extends StatelessWidget {
                 fontSize: 17,
               ),
             ),
-            trailing: Icon(CupertinoIcons.ellipsis_vertical, color: Colors.black),
+            trailing:
+                Icon(CupertinoIcons.ellipsis_vertical, color: Colors.black),
           ),
         ],
       ),

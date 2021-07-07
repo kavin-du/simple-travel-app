@@ -6,15 +6,22 @@ class TravelDataProvider with ChangeNotifier {
   List<TravelPlace> travelList = [];
 
   loadPlaces() async {
-    await FirebaseFirestore.instance
+    return await FirebaseFirestore.instance
         .collection('travel-places')
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((queryDocSnapshot) {
         if (queryDocSnapshot.exists) {
-          travelList.add(TravelPlace.fromJson({"id": queryDocSnapshot.id, ...queryDocSnapshot.data()}));
+          travelList.add(TravelPlace.fromJson(
+              {"id": queryDocSnapshot.id, ...queryDocSnapshot.data()}));
+          notifyListeners();
         }
       });
     });
   }
+
+  // void addItem(TravelPlace travelPlace) {
+  //   travelList.add(travelPlace);
+  //   notifyListeners();
+  // }
 }
