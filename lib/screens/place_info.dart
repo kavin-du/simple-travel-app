@@ -78,7 +78,7 @@ class PlaceInfo extends StatelessWidget {
                                 radius: 20,
                                 backgroundColor: Colors.white,
                                 child: Icon(
-                                  CupertinoIcons.star_fill,
+                                  CupertinoIcons.arrow_swap,
                                   color: Colors.pinkAccent,
                                 )),
                           ),

@@ -1,6 +1,6 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:madhack_workshop2/models/travel_place.dart';
 import 'package:madhack_workshop2/providers/travel_data_provider.dart';
 import 'package:madhack_workshop2/screens/place_info.dart';
 import 'package:madhack_workshop2/widgets/travel_home_widget.dart';
@@ -33,26 +33,28 @@ class _HomeState extends State<Home> {
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 25,
+        titleSpacing: 18,
+        leading: Icon(CupertinoIcons.slider_horizontal_3, color: Colors.black),
         title: Text(
           'Discover Places',
           style: TextStyle(
             color: Colors.black,
-            fontSize: 27,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        foregroundColor: Colors.transparent,
+        backgroundColor: Colors.green[200],
         toolbarHeight: 60,
         actions: [
-          Icon(CupertinoIcons.camera_on_rectangle_fill, color: Colors.lightGreen),
+          CircleAvatar(
+            backgroundImage: AssetImage('images/avatar.png'),
+          ),
           SizedBox(width: 30),
         ],
       ),
       body: SafeArea(
         child: Container(
+          color: Colors.green[100],
           // decoration: BoxDecoration(
           //   image: DecorationImage(
           //     image: AssetImage('images/background_home.jpg'),
@@ -72,8 +74,8 @@ class _HomeState extends State<Home> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => PlaceInfo(
-                                travelPlace:
-                                    travelDataProvider.travelList[index])));
+                                travelPlace: travelDataProvider
+                                    .travelList[index])));
                   },
                   child: TravelTileWidget(
                       travelPlace: travelDataProvider.travelList[index]),

@@ -12,6 +12,7 @@ void main() async {
     child: MaterialApp(
       home: Home(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Apple'),
     ),
     providers: [
       ChangeNotifierProvider<TravelDataProvider>(

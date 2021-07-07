@@ -62,6 +62,7 @@ class TravelTileWidget extends StatelessWidget {
                 fontSize: 17,
               ),
             ),
+            trailing: Icon(CupertinoIcons.ellipsis_vertical, color: Colors.black),
           ),
         ],
       ),
