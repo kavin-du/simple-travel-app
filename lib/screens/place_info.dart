@@ -31,11 +31,14 @@ class PlaceInfo extends StatelessWidget {
                       children: [
                         Hero(
                           tag: travelPlace.id+'title',
-                          child: Text(
-                            travelPlace.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
+                          child: Material(
+                            type: MaterialType.transparency,
+                            child: Text(
+                              travelPlace.title,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
                             ),
                           ),
                         ),

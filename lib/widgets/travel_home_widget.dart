@@ -28,7 +28,6 @@ class TravelTileWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                   child: Image.network(                    
                     travelPlace.image,
-                    height: 220,
                     fit: BoxFit.fill,
                     loadingBuilder: (context, child, progress) {
                       return progress != null ? Container(
@@ -63,11 +62,14 @@ class TravelTileWidget extends StatelessWidget {
             ),
             title: Hero(
               tag: travelPlace.id+'title',
-              child: Text(
-                travelPlace.title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+              child: Material(
+                type: MaterialType.transparency,
+                child: Text(
+                  travelPlace.title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
